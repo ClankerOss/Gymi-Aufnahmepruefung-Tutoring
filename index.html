@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gymi-Aufnahmeprüfung · Prüfungsarchiv</title>
+<style>
+  :root{
+    --navy-900:#0a1730;
+    --navy-800:#0d2143;
+    --navy-700:#12294f;
+    --navy-600:#1b3767;
+    --navy-500:#274a82;
+    --line:rgba(255,255,255,.10);
+    --ink:#eaf0fa;
+    --muted:#9fb0cc;
+    --gold:#e5b567;
+    --auf:#5b93e6;
+    --los:#4fbf9b;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+    background:linear-gradient(180deg,var(--navy-900) 0%, var(--navy-800) 100%);
+    color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh;
+  }
+  a{color:inherit}
+  .hero{
+    background:linear-gradient(120deg,var(--navy-800),var(--navy-600));
+    border-bottom:1px solid var(--line);
+    padding:52px 22px 40px;
+  }
+  .hero-in{max-width:960px;margin:0 auto}
+  .brand{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+  .crest{
+    width:46px;height:46px;border-radius:11px;flex:none;
+    background:linear-gradient(145deg,var(--gold),#c8924a);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800;color:var(--navy-900);font-size:1.25rem;
+    box-shadow:0 4px 16px rgba(0,0,0,.35);
+  }
+  .brand small{display:block;color:var(--muted);font-size:.8rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+  .brand b{font-size:1.05rem;font-weight:700}
+  h1{font-size:2.05rem;margin:0 0 10px;letter-spacing:-.02em;font-weight:750;line-height:1.15}
+  .lede{color:var(--muted);font-size:1.05rem;max-width:640px;margin:0}
+  .badges{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
+  .badge{background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:999px;
+    padding:6px 14px;font-size:.84rem;color:var(--ink)}
+  .badge b{color:var(--gold)}
+
+  main{max-width:960px;margin:0 auto;padding:38px 22px 90px}
+  .section{margin-bottom:44px}
+  .sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+    padding-bottom:14px;margin-bottom:6px;border-bottom:2px solid var(--navy-500)}
+  .sec-head h2{font-size:1.4rem;margin:0;font-weight:700}
+  .sec-head .tag{color:var(--muted);font-size:.92rem}
+  .count{color:var(--muted);font-size:.82rem}
+
+  table{width:100%;border-collapse:separate;border-spacing:0 9px}
+  th{text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;
+    color:var(--muted);padding:0 16px 2px;font-weight:600}
+  td{background:var(--navy-700);padding:14px 16px;vertical-align:middle;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  tr td:first-child{border-radius:12px 0 0 12px;border-left:1px solid var(--line)}
+  tr td:last-child{border-radius:0 12px 12px 0;border-right:1px solid var(--line)}
+  tr:hover td{background:var(--navy-600)}
+  .yr{font-size:1.25rem;font-weight:750;letter-spacing:-.01em}
+  .yr span{display:block;font-size:.7rem;font-weight:500;color:var(--muted);letter-spacing:.05em}
+  .btns{display:flex;flex-wrap:wrap;gap:10px}
+  a.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-size:.92rem;font-weight:650;
+    padding:9px 16px;border-radius:9px;transition:transform .08s ease, filter .15s ease;white-space:nowrap}
+  a.btn:hover{transform:translateY(-1px);filter:brightness(1.12)}
+  a.btn svg{width:15px;height:15px}
+  a.auf{background:#2b5cab;color:#fff;border:1px solid #3a6fc4;box-shadow:0 2px 8px rgba(43,92,171,.35)}
+  a.los{background:#2e9e6f;color:#fff;border:1px solid #3bb681;box-shadow:0 2px 8px rgba(46,158,111,.32)}
+  a.gen{background:rgba(255,255,255,.06);color:var(--ink);border:1px solid var(--line)}
+
+  .state{background:var(--navy-700);border:1px solid var(--line);border-radius:14px;
+    padding:26px 24px;color:var(--muted);text-align:center}
+  .state a{color:var(--gold);text-decoration:none;font-weight:600}
+  .spin{width:26px;height:26px;border:3px solid var(--line);border-top-color:var(--gold);
+    border-radius:50%;margin:0 auto 14px;animation:sp 1s linear infinite}
+  @keyframes sp{to{transform:rotate(360deg)}}
+
+  footer{max-width:960px;margin:0 auto;padding:26px 22px 60px;border-top:1px solid var(--line);
+    color:var(--muted);font-size:.9rem}
+  footer a{color:var(--auf);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+  footer p{margin:0 0 8px}
+  @media(max-width:560px){
+    h1{font-size:1.6rem}
+    .yr{font-size:1.05rem}
+    a.btn{font-size:.85rem;padding:8px 12px}
+    td{padding:12px}
+  }
+</style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-in">
+      <div class="brand">
+        <div class="crest">G</div>
+        <div><small>Nachhilfe · Kanton Zürich</small><b>Gymi-Aufnahmeprüfung</b></div>
+      </div>
+      <h1>Prüfungsarchiv</h1>
+      <p class="lede">Alle offiziellen Mathematik-Aufnahmeprüfungen mit Lösungen — kostenlos zum Herunterladen und Üben. Ideal zur Vorbereitung unter realen Bedingungen: 90&nbsp;Minuten, einfacher Taschenrechner.</p>
+      <div class="badges">
+        <span class="badge">📄 Aufgaben <b>+</b> Lösungen</span>
+        <span class="badge">⏱ 90 Minuten</span>
+        <span class="badge">🏛 offiziell (Kanton Zürich)</span>
+        <span class="badge">✓ kostenlos</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="content">
+    <div class="state"><div class="spin"></div>Prüfungen werden geladen …</div>
+  </main>
+
+  <footer>
+    <p>Quelle aller Prüfungen: Kanton Zürich, Mittelschul- und Berufsbildungsamt — offiziell und kostenlos.
+       Offizielle Seiten: <a href="https://www.zh.ch/de/bildung/schulen/maturitaetsschule/zentrale-aufnahmepruefung/pruefung-fuer-das-kurzgymnasium.html" target="_blank" rel="noopener">Kurzgymnasium (ZAP2)</a> ·
+       <a href="https://www.zh.ch/de/bildung/schulen/maturitaetsschule/zentrale-aufnahmepruefung/pruefung-fuer-die-fachmittelschule.html" target="_blank" rel="noopener">Fachmittelschule (ZAP3 / FMS)</a>.</p>
+    <p>Tipp für die Vorbereitung: die letzten 3–4 Jahrgänge unter Zeitdruck lösen, danach mit den Lösungen korrigieren und Fehlertypen sammeln.</p>
+  </footer>
+
+<script>
+  const OWNER  = "ClankerOss";
+  const REPO   = "Gymi-Aufnahmepruefung-Tutoring";
+  const BRANCH = "main";
+  // jsDelivr serves the PDFs with Content-Type application/pdf, so the browser
+  // opens them inline in its PDF viewer instead of forcing a download.
+  const CDN    = `https://cdn.jsdelivr.net/gh/${OWNER}/${REPO}@${BRANCH}/`;
+  const REPOURL= `https://github.com/${OWNER}/${REPO}`;
+
+  // Which top-level folders become sections, and how they're labelled.
+  const SECTIONS = [
+    { key:"ZAP2", title:"ZAP2 — Kurzgymnasium", tag:"Aufnahme nach der 2./3. Sek" },
+    { key:"ZAP3", title:"ZAP3 — Fachmittelschule (FMS)", tag:"gemeinsam mit BMS, Serie D" },
+  ];
+
+  const DL = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>`;
+
+  function rawUrl(path){ return CDN + path.split("/").map(encodeURIComponent).join("/"); }
+  function yearOf(name){ const m = name.match(/(20\d{2}|19\d{2})/); return m ? m[1] : null; }
+  function typeOf(name){
+    const n = name.toLowerCase();
+    if(/(l(oe|ö)s|solution|lsg|answer)/.test(n)) return "los";
+    if(/(aufgab|exam|pr(ue|ü)fung|angab|questions?)/.test(n)) return "auf";
+    return "gen";
+  }
+  function esc(s){ return s.replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+  function btn(cls,label,url,filename){
+    return `<a class="btn ${cls}" href="${url}" target="_blank" rel="noopener" title="${esc(filename)}">${DL}${label}</a>`;
+  }
+
+  function renderSection(sec, files){
+    if(!files.length) return "";
+    // group by year
+    const byYear = {};
+    const noYear = [];
+    files.forEach(f=>{
+      const y = yearOf(f.name);
+      if(y){ (byYear[y] = byYear[y] || []).push(f); }
+      else noYear.push(f);
+    });
+    const years = Object.keys(byYear).sort((a,b)=>b-a);
+
+    let rows = "";
+    years.forEach(y=>{
+      const items = byYear[y];
+      const auf = items.find(i=>typeOf(i.name)==="auf");
+      const los = items.find(i=>typeOf(i.name)==="los");
+      const gen = items.filter(i=>i!==auf && i!==los);
+      let b = `<div class="btns">`;
+      if(auf) b += btn("auf","Aufgaben", rawUrl(auf.path), auf.name);
+      if(los) b += btn("los","Lösungen", rawUrl(los.path), los.name);
+      gen.forEach(g=> b += btn("gen", g.name.replace(/\.pdf$/i,""), rawUrl(g.path), g.name));
+      b += `</div>`;
+      rows += `<tr><td class="yr">${y}</td><td>${b}</td></tr>`;
+    });
+    noYear.forEach(f=>{
+      rows += `<tr><td class="yr">–</td><td><div class="btns">${btn("gen", f.name.replace(/\.pdf$/i,""), rawUrl(f.path), f.name)}</div></td></tr>`;
+    });
+
+    return `<section class="section">
+      <div class="sec-head">
+        <h2>${sec.title}</h2>
+        <span class="tag">${sec.tag}</span>
+      </div>
+      <div class="count">${files.length} Datei${files.length===1?"":"en"}</div>
+      <table>
+        <thead><tr><th style="width:120px">Jahr</th><th>Download</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </section>`;
+  }
+
+  async function load(){
+    const content = document.getElementById("content");
+    try{
+      const res = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/git/trees/${BRANCH}?recursive=1`, {
+        headers:{ "Accept":"application/vnd.github+json" }
+      });
+      if(!res.ok) throw new Error("GitHub API "+res.status);
+      const data = await res.json();
+      const pdfs = (data.tree||[])
+        .filter(n => n.type==="blob" && /\.pdf$/i.test(n.path))
+        .map(n => ({ path:n.path, name:n.path.split("/").pop() }));
+
+      let html = "";
+      SECTIONS.forEach(sec=>{
+        const files = pdfs.filter(f => f.path.split("/")[0].toLowerCase() === sec.key.toLowerCase());
+        html += renderSection(sec, files);
+      });
+
+      // any pdfs outside the known sections
+      const known = new Set(SECTIONS.map(s=>s.key.toLowerCase()));
+      const other = pdfs.filter(f => !known.has(f.path.split("/")[0].toLowerCase()));
+      if(other.length){
+        html += renderSection({key:"Weitere", title:"Weitere Prüfungen", tag:""}, other);
+      }
+
+      if(!html.trim()){
+        content.innerHTML = `<div class="state">Es sind noch keine PDF-Prüfungen im Repository abgelegt.<br>
+          Lade sie in die Ordner <b>ZAP2/</b> bzw. <b>ZAP3/</b> hoch — die Seite listet sie danach automatisch.<br><br>
+          <a href="${REPOURL}" target="_blank" rel="noopener">Repository öffnen →</a></div>`;
+        return;
+      }
+      content.innerHTML = html;
+    }catch(err){
+      content.innerHTML = `<div class="state">Die Prüfungsliste konnte gerade nicht geladen werden
+        (${esc(String(err.message||err))}).<br>Bitte lade die Seite in ein paar Minuten neu, oder öffne die Dateien direkt:<br><br>
+        <a href="${REPOURL}/tree/${BRANCH}/ZAP2" target="_blank" rel="noopener">Ordner ZAP2 →</a>&nbsp;&nbsp;
+        <a href="${REPOURL}/tree/${BRANCH}/ZAP3" target="_blank" rel="noopener">Ordner ZAP3 →</a></div>`;
+    }
+  }
+  load();
+</script>
+</body>
+</html>
