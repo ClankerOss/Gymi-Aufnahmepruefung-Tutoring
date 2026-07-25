@@ -341,7 +341,7 @@
     const subs = sec.subjects.map(sub=>{
       const body = (sub.items && sub.items.length)
         ? exButtons(sec.folder + "/" + sub.folder, sub.items)
-        : `<div class="sub-empty">Noch keine Übungen — folgt in Kürze.</div>`;
+        : `<div class="sub-empty">Noch keine Übungen.</div>`;
       const hint = sub.hint ? `<p class="hint">${sub.hint}</p>` : "";
       return `<div class="subsec"><h3>${sub.name}</h3>${hint}${body}</div>`;
     }).join("");
