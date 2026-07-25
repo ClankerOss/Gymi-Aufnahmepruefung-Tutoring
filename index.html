@@ -55,7 +55,7 @@
     padding-bottom:14px;margin-bottom:6px;border-bottom:2px solid var(--navy-500)}
   .sec-head h2{font-size:1.4rem;margin:0;font-weight:700}
   .sec-head .tag{color:var(--muted);font-size:.92rem}
-  .count{color:var(--muted);font-size:.82rem}
+  .count{color:var(--muted);font-size:.82rem;margin-bottom:4px}
 
   table{width:100%;border-collapse:separate;border-spacing:0 9px}
   th{text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;
@@ -64,8 +64,7 @@
   tr td:first-child{border-radius:12px 0 0 12px;border-left:1px solid var(--line)}
   tr td:last-child{border-radius:0 12px 12px 0;border-right:1px solid var(--line)}
   tr:hover td{background:var(--navy-600)}
-  .yr{font-size:1.25rem;font-weight:750;letter-spacing:-.01em}
-  .yr span{display:block;font-size:.7rem;font-weight:500;color:var(--muted);letter-spacing:.05em}
+  .yr{font-size:1.25rem;font-weight:750;letter-spacing:-.01em;width:120px}
   .btns{display:flex;flex-wrap:wrap;gap:10px}
   a.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-size:.92rem;font-weight:650;
     padding:9px 16px;border-radius:9px;transition:transform .08s ease, filter .15s ease;white-space:nowrap}
@@ -73,14 +72,9 @@
   a.btn svg{width:15px;height:15px}
   a.auf{background:#2b5cab;color:#fff;border:1px solid #3a6fc4;box-shadow:0 2px 8px rgba(43,92,171,.35)}
   a.los{background:#2e9e6f;color:#fff;border:1px solid #3bb681;box-shadow:0 2px 8px rgba(46,158,111,.32)}
-  a.gen{background:rgba(255,255,255,.06);color:var(--ink);border:1px solid var(--line)}
 
   .state{background:var(--navy-700);border:1px solid var(--line);border-radius:14px;
-    padding:26px 24px;color:var(--muted);text-align:center}
-  .state a{color:var(--gold);text-decoration:none;font-weight:600}
-  .spin{width:26px;height:26px;border:3px solid var(--line);border-top-color:var(--gold);
-    border-radius:50%;margin:0 auto 14px;animation:sp 1s linear infinite}
-  @keyframes sp{to{transform:rotate(360deg)}}
+    padding:22px 24px;color:var(--muted);text-align:center}
 
   footer{max-width:960px;margin:0 auto;padding:26px 22px 60px;border-top:1px solid var(--line);
     color:var(--muted);font-size:.9rem}
@@ -89,7 +83,7 @@
   footer p{margin:0 0 8px}
   @media(max-width:560px){
     h1{font-size:1.6rem}
-    .yr{font-size:1.05rem}
+    .yr{font-size:1.05rem;width:64px}
     a.btn{font-size:.85rem;padding:8px 12px}
     td{padding:12px}
   }
@@ -103,140 +97,76 @@
         <div><small>Nachhilfe · Kanton Zürich</small><b>Gymi-Aufnahmeprüfung</b></div>
       </div>
       <h1>Prüfungsarchiv</h1>
-      <p class="lede">Alle offiziellen Mathematik-Aufnahmeprüfungen mit Lösungen — kostenlos zum Herunterladen und Üben. Ideal zur Vorbereitung unter realen Bedingungen: 90&nbsp;Minuten, einfacher Taschenrechner.</p>
+      <p class="lede">Alle offiziellen Mathematik-Aufnahmeprüfungen mit Lösungen — direkt im Browser öffnen und üben. Ideal zur Vorbereitung unter realen Bedingungen: 90&nbsp;Minuten, einfacher Taschenrechner.</p>
       <div class="badges">
         <span class="badge">📄 Aufgaben <b>+</b> Lösungen</span>
         <span class="badge">⏱ 90 Minuten</span>
         <span class="badge">🏛 offiziell (Kanton Zürich)</span>
-        <span class="badge">✓ kostenlos</span>
       </div>
     </div>
   </header>
 
-  <main id="content">
-    <div class="state"><div class="spin"></div>Prüfungen werden geladen …</div>
-  </main>
+  <main id="content"></main>
 
   <footer>
-    <p>Quelle aller Prüfungen: Kanton Zürich, Mittelschul- und Berufsbildungsamt — offiziell und kostenlos.
+    <p>Quelle aller Prüfungen: Kanton Zürich, Mittelschul- und Berufsbildungsamt.
        Offizielle Seiten: <a href="https://www.zh.ch/de/bildung/schulen/maturitaetsschule/zentrale-aufnahmepruefung/pruefung-fuer-das-kurzgymnasium.html" target="_blank" rel="noopener">Kurzgymnasium (ZAP2)</a> ·
        <a href="https://www.zh.ch/de/bildung/schulen/maturitaetsschule/zentrale-aufnahmepruefung/pruefung-fuer-die-fachmittelschule.html" target="_blank" rel="noopener">Fachmittelschule (ZAP3 / FMS)</a>.</p>
     <p>Tipp für die Vorbereitung: die letzten 3–4 Jahrgänge unter Zeitdruck lösen, danach mit den Lösungen korrigieren und Fehlertypen sammeln.</p>
   </footer>
 
 <script>
-  const OWNER  = "ClankerOss";
-  const REPO   = "Gymi-Aufnahmepruefung-Tutoring";
-  const BRANCH = "main";
-  // jsDelivr serves the PDFs with Content-Type application/pdf, so the browser
-  // opens them inline in its PDF viewer instead of forcing a download.
-  const CDN    = `https://cdn.jsdelivr.net/gh/${OWNER}/${REPO}@${BRANCH}/`;
-  const REPOURL= `https://github.com/${OWNER}/${REPO}`;
-
-  // Which top-level folders become sections, and how they're labelled.
+  // ── Prüfungen ─────────────────────────────────────────────────────────
+  // Dateien liegen relativ zu dieser Seite in ZAP2/ bzw. ZAP3/.
+  // Neue Jahrgänge einfach zum jeweiligen Array hinzufügen — sonst nichts nötig.
   const SECTIONS = [
-    { key:"ZAP2", title:"ZAP2 — Kurzgymnasium", tag:"Aufnahme nach der 2./3. Sek" },
-    { key:"ZAP3", title:"ZAP3 — Fachmittelschule (FMS)", tag:"gemeinsam mit BMS, Serie D" },
+    {
+      key:"ZAP2", folder:"ZAP2",
+      title:"ZAP2 — Kurzgymnasium", tag:"Aufnahme nach der 2./3. Sek",
+      years:[2025,2024,2023,2022,2021,2020,2019,2018,2017,2016,2015]
+    },
+    {
+      key:"ZAP3", folder:"ZAP3",
+      title:"ZAP3 — Fachmittelschule (FMS)", tag:"gemeinsam mit BMS, Serie D",
+      years:[]   // sobald FMS-PDFs im Ordner ZAP3/ liegen, Jahre hier eintragen
+    }
   ];
 
-  const DL = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>`;
+  const EYE = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>`;
 
-  function rawUrl(path){ return CDN + path.split("/").map(encodeURIComponent).join("/"); }
-  function yearOf(name){ const m = name.match(/(20\d{2}|19\d{2})/); return m ? m[1] : null; }
-  function typeOf(name){
-    const n = name.toLowerCase();
-    if(/(l(oe|ö)s|solution|lsg|answer)/.test(n)) return "los";
-    if(/(aufgab|exam|pr(ue|ü)fung|angab|questions?)/.test(n)) return "auf";
-    return "gen";
+  function href(folder, file){
+    return folder + "/" + encodeURIComponent(file);
   }
-  function esc(s){ return s.replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
-
-  function btn(cls,label,url,filename){
-    return `<a class="btn ${cls}" href="${url}" target="_blank" rel="noopener" title="${esc(filename)}">${DL}${label}</a>`;
+  function btn(cls,label,folder,file){
+    return `<a class="btn ${cls}" href="${href(folder,file)}" target="_blank" rel="noopener" title="${file}">${EYE}${label}</a>`;
   }
 
-  function renderSection(sec, files){
-    if(!files.length) return "";
-    // group by year
-    const byYear = {};
-    const noYear = [];
-    files.forEach(f=>{
-      const y = yearOf(f.name);
-      if(y){ (byYear[y] = byYear[y] || []).push(f); }
-      else noYear.push(f);
-    });
-    const years = Object.keys(byYear).sort((a,b)=>b-a);
-
-    let rows = "";
-    years.forEach(y=>{
-      const items = byYear[y];
-      const auf = items.find(i=>typeOf(i.name)==="auf");
-      const los = items.find(i=>typeOf(i.name)==="los");
-      const gen = items.filter(i=>i!==auf && i!==los);
-      let b = `<div class="btns">`;
-      if(auf) b += btn("auf","Aufgaben", rawUrl(auf.path), auf.name);
-      if(los) b += btn("los","Lösungen", rawUrl(los.path), los.name);
-      gen.forEach(g=> b += btn("gen", g.name.replace(/\.pdf$/i,""), rawUrl(g.path), g.name));
-      b += `</div>`;
-      rows += `<tr><td class="yr">${y}</td><td>${b}</td></tr>`;
-    });
-    noYear.forEach(f=>{
-      rows += `<tr><td class="yr">–</td><td><div class="btns">${btn("gen", f.name.replace(/\.pdf$/i,""), rawUrl(f.path), f.name)}</div></td></tr>`;
-    });
-
-    return `<section class="section">
-      <div class="sec-head">
-        <h2>${sec.title}</h2>
-        <span class="tag">${sec.tag}</span>
-      </div>
-      <div class="count">${files.length} Datei${files.length===1?"":"en"}</div>
-      <table>
-        <thead><tr><th style="width:120px">Jahr</th><th>Download</th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table>
-    </section>`;
-  }
-
-  async function load(){
-    const content = document.getElementById("content");
-    try{
-      const res = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/git/trees/${BRANCH}?recursive=1`, {
-        headers:{ "Accept":"application/vnd.github+json" }
-      });
-      if(!res.ok) throw new Error("GitHub API "+res.status);
-      const data = await res.json();
-      const pdfs = (data.tree||[])
-        .filter(n => n.type==="blob" && /\.pdf$/i.test(n.path))
-        .map(n => ({ path:n.path, name:n.path.split("/").pop() }));
-
-      let html = "";
-      SECTIONS.forEach(sec=>{
-        const files = pdfs.filter(f => f.path.split("/")[0].toLowerCase() === sec.key.toLowerCase());
-        html += renderSection(sec, files);
-      });
-
-      // any pdfs outside the known sections
-      const known = new Set(SECTIONS.map(s=>s.key.toLowerCase()));
-      const other = pdfs.filter(f => !known.has(f.path.split("/")[0].toLowerCase()));
-      if(other.length){
-        html += renderSection({key:"Weitere", title:"Weitere Prüfungen", tag:""}, other);
-      }
-
-      if(!html.trim()){
-        content.innerHTML = `<div class="state">Es sind noch keine PDF-Prüfungen im Repository abgelegt.<br>
-          Lade sie in die Ordner <b>ZAP2/</b> bzw. <b>ZAP3/</b> hoch — die Seite listet sie danach automatisch.<br><br>
-          <a href="${REPOURL}" target="_blank" rel="noopener">Repository öffnen →</a></div>`;
-        return;
-      }
-      content.innerHTML = html;
-    }catch(err){
-      content.innerHTML = `<div class="state">Die Prüfungsliste konnte gerade nicht geladen werden
-        (${esc(String(err.message||err))}).<br>Bitte lade die Seite in ein paar Minuten neu, oder öffne die Dateien direkt:<br><br>
-        <a href="${REPOURL}/tree/${BRANCH}/ZAP2" target="_blank" rel="noopener">Ordner ZAP2 →</a>&nbsp;&nbsp;
-        <a href="${REPOURL}/tree/${BRANCH}/ZAP3" target="_blank" rel="noopener">Ordner ZAP3 →</a></div>`;
+  function sectionHTML(sec){
+    const head = `<div class="sec-head"><h2>${sec.title}</h2><span class="tag">${sec.tag}</span></div>`;
+    if(!sec.years.length){
+      return `<section class="section">${head}
+        <div class="state">Die FMS-Prüfungen (ZAP3) folgen in Kürze.</div></section>`;
     }
+    let rows = "";
+    sec.years.slice().sort((a,b)=>b-a).forEach(y=>{
+      const aufFile = `${sec.key}-${y}-Aufgaben.pdf`;
+      const losFile = `${sec.key}-${y}-Loesungen.pdf`;
+      rows += `<tr>
+        <td class="yr">${y}</td>
+        <td><div class="btns">
+          ${btn("auf","Aufgaben", sec.folder, aufFile)}
+          ${btn("los","Lösungen", sec.folder, losFile)}
+        </div></td></tr>`;
+    });
+    return `<section class="section">${head}
+      <div class="count">${sec.years.length} Prüfungen · ${sec.years.length*2} PDFs</div>
+      <table>
+        <thead><tr><th style="width:120px">Jahr</th><th>Prüfung</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table></section>`;
   }
-  load();
+
+  document.getElementById("content").innerHTML = SECTIONS.map(sectionHTML).join("");
 </script>
 </body>
 </html>
