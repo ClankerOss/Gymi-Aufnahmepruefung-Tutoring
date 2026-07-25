@@ -49,7 +49,24 @@
     padding:6px 14px;font-size:.84rem;color:var(--ink)}
   .badge b{color:var(--gold)}
 
-  main{max-width:960px;margin:0 auto;padding:38px 22px 90px}
+  .bring{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin-top:18px;
+    padding-top:18px;border-top:1px solid var(--line)}
+  .bring-label{font-size:.9rem;font-weight:700;color:var(--gold);margin-right:2px}
+  .mat{display:inline-flex;align-items:center;gap:6px;font-size:.86rem;font-weight:600;
+    background:rgba(229,181,103,.12);border:1px solid rgba(229,181,103,.4);
+    color:#f2d6a4;border-radius:999px;padding:6px 13px}
+  .calc-note{margin-top:12px;font-size:.83rem;color:var(--muted);line-height:1.5}
+  .calc-note b{color:#f2d6a4;font-weight:600}
+
+  .tipwrap{max-width:960px;margin:0 auto;padding:28px 22px 0}
+  .tip{display:flex;gap:12px;align-items:flex-start;
+    background:rgba(229,181,103,.10);border:1px solid rgba(229,181,103,.45);
+    border-left:4px solid var(--gold);border-radius:12px;padding:16px 18px;
+    color:#f4e3c6;font-size:.98rem;line-height:1.5}
+  .tip .ic{font-size:1.3rem;line-height:1}
+  .tip b{color:var(--gold)}
+
+  main{max-width:960px;margin:0 auto;padding:26px 22px 90px}
   .section{margin-bottom:44px}
   .sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
     padding-bottom:14px;margin-bottom:6px;border-bottom:2px solid var(--navy-500)}
@@ -76,20 +93,60 @@
   .state{background:var(--navy-700);border:1px solid var(--line);border-radius:14px;
     padding:22px 24px;color:var(--muted);text-align:center}
 
+  .subsec{margin-top:22px}
+  .subsec:first-of-type{margin-top:8px}
+  .subsec h3{font-size:1.06rem;margin:0 0 3px;font-weight:700;color:var(--ink)}
+  .subsec .hint{color:var(--muted);font-size:.85rem;margin:0 0 11px}
+  .ex-list{display:flex;flex-wrap:wrap;gap:10px}
+  a.ex{background:rgba(255,255,255,.06);color:var(--ink);border:1px solid var(--line)}
+  .sub-empty{color:var(--muted);font-size:.9rem;background:var(--navy-700);
+    border:1px dashed rgba(255,255,255,.18);border-radius:10px;padding:12px 15px}
+
   footer{max-width:960px;margin:0 auto;padding:26px 22px 60px;border-top:1px solid var(--line);
     color:var(--muted);font-size:.9rem}
   footer a{color:var(--auf);text-decoration:none}
   footer a:hover{text-decoration:underline}
   footer p{margin:0 0 8px}
+  /* ── Theme-Umschalter oben rechts ───────────────────────────────── */
+  .theme-toggle{position:fixed;top:16px;right:16px;z-index:60;
+    display:inline-flex;align-items:center;gap:7px;cursor:pointer;
+    font-family:inherit;font-weight:750;font-size:.9rem;color:#fff;
+    padding:10px 17px;border:none;border-radius:999px;
+    background:linear-gradient(135deg,#2b5cab,#4f8cff);
+    box-shadow:0 4px 16px rgba(0,0,0,.4);transition:transform .1s ease, filter .15s ease}
+  .theme-toggle:hover{transform:translateY(-1px);filter:brightness(1.08)}
+  .theme-toggle:active{transform:translateY(0)}
+
+  /* ── Girl-Boss-Theme (pink & feminin) ───────────────────────────── */
+  body.girlboss{
+    --navy-900:#2a0b22; --navy-800:#3d0f31; --navy-700:#511540;
+    --navy-600:#6a1c55; --navy-500:#c23b8f; --line:rgba(255,255,255,.12);
+    --ink:#fdeaf5; --muted:#eaadd0; --gold:#ff9ec4; --auf:#ff5fa6; --los:#c084fc;
+    background:linear-gradient(180deg,#2a0b22 0%, #3d0f31 100%);
+  }
+  body.girlboss .hero{background:linear-gradient(120deg,#5a1746,#b23a86)}
+  body.girlboss .crest{background:linear-gradient(145deg,#ffb3d6,#ff5fa6);color:#3d0f31}
+  body.girlboss .theme-toggle{background:linear-gradient(135deg,#ff5fa6,#c084fc)}
+  body.girlboss a.auf{background:#e0348a;border-color:#ff7ab8;box-shadow:0 2px 8px rgba(224,52,138,.42)}
+  body.girlboss a.los{background:#a855e0;border-color:#c890f5;box-shadow:0 2px 8px rgba(168,85,224,.38)}
+  body.girlboss .mat{background:rgba(255,158,196,.16);border-color:rgba(255,158,196,.55);color:#ffd9ec}
+  body.girlboss .calc-note b{color:#ffd9ec}
+  body.girlboss .tip{background:rgba(255,158,196,.12);border-color:rgba(255,158,196,.5);
+    border-left-color:#ff5fa6;color:#ffe3f1}
+
   @media(max-width:560px){
     h1{font-size:1.6rem}
     .yr{font-size:1.05rem;width:64px}
     a.btn{font-size:.85rem;padding:8px 12px}
     td{padding:12px}
+    .theme-toggle{top:12px;right:12px;font-size:.82rem;padding:8px 13px}
+    .hero{padding-top:64px}
   }
 </style>
 </head>
 <body>
+  <button id="themeToggle" class="theme-toggle" type="button" aria-label="Theme wechseln">🚗 Bratan</button>
+
   <header class="hero">
     <div class="hero-in">
       <div class="brand">
@@ -103,8 +160,24 @@
         <span class="badge">⏱ 90 Minuten</span>
         <span class="badge">🏛 offiziell (Kanton Zürich)</span>
       </div>
+      <div class="bring">
+        <span class="bring-label">🎒 Nicht vergessen:</span>
+        <span class="mat">✏️ Stifte</span>
+        <span class="mat">📐 Geodreieck</span>
+        <span class="mat">🧭 Zirkel</span>
+        <span class="mat">📏 Lineal</span>
+        <span class="mat">🧮 Taschenrechner</span>
+      </div>
+      <div class="calc-note"><b>Erlaubte Taschenrechner:</b> TI-30 ECO RS · TI-30X IIS · Casio FX-82 Solar II · Sharp EL-501 T</div>
     </div>
   </header>
+
+  <div class="tipwrap">
+    <div class="tip">
+      <span class="ic">✍️</span>
+      <div><b>Nicht vergessen:</b> Immer den ganzen <b>Lösungsweg</b> aufschreiben — es gibt Punkte für den Weg, nicht nur für das Ergebnis. Auch wenn das Endergebnis falsch ist, zählt ein sauber gezeigter Rechenweg.</div>
+    </div>
+  </div>
 
   <main id="content"></main>
 
@@ -131,6 +204,39 @@
       years:[]   // sobald FMS-PDFs im Ordner ZAP3/ liegen, Jahre hier eintragen
     }
   ];
+
+  // ── Übungen nach Thema (offizieller ZAP2-Mathe-Prüfungsstoff) ─────────
+  // Übungs-PDFs in   Uebungen/<Themen-Ordner>/   legen und beim jeweiligen
+  // Thema als   { label:"Anzeigename", file:"datei.pdf" }   eintragen.
+  const TOPIC_SECTION = {
+    folder:"Uebungen", title:"Übungen", tag:"Aufgaben nach Thema · offizieller ZAP2-Prüfungsstoff",
+    subjects:[
+      { name:"Arithmetik – Zahlen & Rechnen", folder:"Arithmetik",
+        hint:"Rechenregeln, Teiler & Vielfache, ggT/kgV, Potenzen & Quadratwurzel, Koordinatensystem", items:[] },
+      { name:"Algebra – Variablen, Terme & Gleichungen", folder:"Algebra",
+        hint:"Terme aufstellen & umformen, lineare Gleichungen, Formeln umstellen, ausmultiplizieren & faktorisieren", items:[] },
+      { name:"Grössen & Masse – inkl. Prozente", folder:"Groessen",
+        hint:"Einheiten, Länge/Fläche/Volumen/Gewicht/Zeit, Prozent- & Anteilrechnen", items:[] },
+      { name:"Funktionale Zusammenhänge", folder:"Funktionen",
+        hint:"Tabellen & Graphen, Weg-Zeit- & Füllgraphen, Proportionalität", items:[] },
+      { name:"Statistik & Wahrscheinlichkeit", folder:"Statistik",
+        hint:"Diagramme, Mittelwert, Häufigkeiten, ein- & zweistufige Zufallsexperimente", items:[] },
+      { name:"Symmetrie & Abbildungen", folder:"Symmetrie",
+        hint:"Achsen-, Dreh- & Punktsymmetrie, Spiegelungen", items:[] },
+      { name:"Geometrie in der Ebene", folder:"Geometrie-Ebene",
+        hint:"Dreiecke & Vierecke, Winkel & Winkelsumme, Pythagoras, Thales, Umfang & Fläche, besondere Linien/Punkte", items:[] },
+      { name:"Geometrie im Raum – Körper", folder:"Geometrie-Raum",
+        hint:"Netze & Ansichten, Volumen & Oberfläche, Würfel/Quader/Prisma/Pyramide", items:[] }
+    ]
+  };
+
+  // ── Probeprüfungen (ohne Unterbereiche) ───────────────────────────────
+  // Eigene ganze Probeprüfungen in   Probepruefungen/   legen und hier als
+  // { label:"Anzeigename", file:"datei.pdf" }   eintragen.
+  const MOCK_SECTION = {
+    folder:"Probepruefungen", title:"Probeprüfungen", tag:"Ganze Prüfungen zum Simulieren (90 Min.)",
+    items:[]
+  };
 
   const EYE = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>`;
 
@@ -166,7 +272,52 @@
       </table></section>`;
   }
 
-  document.getElementById("content").innerHTML = SECTIONS.map(sectionHTML).join("");
+  function exButtons(folder, items){
+    return `<div class="ex-list">` + items.map(it=>
+      `<a class="btn ex" href="${folder}/${encodeURIComponent(it.file)}" target="_blank" rel="noopener" title="${it.file}">${EYE}${it.label}</a>`
+    ).join("") + `</div>`;
+  }
+
+  function topicSectionHTML(sec){
+    const head = `<div class="sec-head"><h2>${sec.title}</h2><span class="tag">${sec.tag}</span></div>`;
+    const subs = sec.subjects.map(sub=>{
+      const body = (sub.items && sub.items.length)
+        ? exButtons(sec.folder + "/" + sub.folder, sub.items)
+        : `<div class="sub-empty">Noch keine Übungen — folgt in Kürze.</div>`;
+      const hint = sub.hint ? `<p class="hint">${sub.hint}</p>` : "";
+      return `<div class="subsec"><h3>${sub.name}</h3>${hint}${body}</div>`;
+    }).join("");
+    return `<section class="section">${head}${subs}</section>`;
+  }
+
+  function flatSectionHTML(sec){
+    const head = `<div class="sec-head"><h2>${sec.title}</h2><span class="tag">${sec.tag}</span></div>`;
+    const body = (sec.items && sec.items.length)
+      ? exButtons(sec.folder, sec.items)
+      : `<div class="sub-empty">Eigene Probeprüfungen kommen später dazu.</div>`;
+    return `<section class="section">${head}${body}</section>`;
+  }
+
+  document.getElementById("content").innerHTML =
+    SECTIONS.map(sectionHTML).join("") +
+    topicSectionHTML(TOPIC_SECTION) +
+    flatSectionHTML(MOCK_SECTION);
+
+  // ── Theme-Umschalter ──────────────────────────────────────────────
+  const tbtn = document.getElementById("themeToggle");
+  function applyTheme(on){
+    document.body.classList.toggle("girlboss", on);
+    tbtn.innerHTML = on ? "💅 Girl Boss" : "🚗 Bratan";
+  }
+  // gespeicherte Auswahl laden (funktioniert auf der veröffentlichten Seite / lokal)
+  let saved = null;
+  try { saved = localStorage.getItem("gymiTheme"); } catch(e) {}
+  applyTheme(saved === "girlboss");
+  tbtn.addEventListener("click", () => {
+    const on = !document.body.classList.contains("girlboss");
+    applyTheme(on);
+    try { localStorage.setItem("gymiTheme", on ? "girlboss" : "classic"); } catch(e) {}
+  });
 </script>
 </body>
 </html>
