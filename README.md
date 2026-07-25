@@ -1,2 +1,2 @@
-# Gymi-Aufnahmepr-fung-Tutoring
+# Gymi-Aufnahmepruefung-Tutoring
 Prüfungs-Archiv für die Gymi Aufnahme prüfung
